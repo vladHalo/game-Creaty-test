@@ -1,61 +1,39 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Core.Scripts.Figure
 {
     public class SpawnCircle : SpawnFigure
     {
-        public GameObject spherePrefab;
-        public int maxSize;
-
-        private void Start()
+        public override void Spawn()
         {
-            Spawn();
-        }
+            SetParameters();
 
-        // private void Spawn()
-        // {
-        //     float sphereDiameter = Random.Range(0, 1);
-        //     int outerSphereRadius = Random.Range(1, maxSize);
-        //     spherePrefab.transform.localScale = new Vector3(sphereDiameter, sphereDiameter, sphereDiameter);
-        //
-        //     Transform parent = new GameObject("Spheres").transform;
-        //     float sphereRadius = sphereDiameter / 2f;
-        //
-        //     for (float x = -outerSphereRadius + sphereRadius; x <= outerSphereRadius; x += sphereDiameter)
-        //     {
-        //         for (float y = -outerSphereRadius + sphereRadius; y <= outerSphereRadius; y += sphereDiameter)
-        //         {
-        //             for (float z = -outerSphereRadius + sphereRadius; z <= outerSphereRadius; z += sphereDiameter)
-        //             {
-        //                 Vector3 position = new Vector3(x, y, z);
-        //                 float distanceToCenter = Vector3.Distance(position, Vector3.zero);
-        //                 if (distanceToCenter <= outerSphereRadius)
-        //                 {
-        //                     Instantiate(spherePrefab, position, Quaternion.identity, parent);
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
+            float sphereRadius = _figureSize / 2f;
 
-        private void Spawn()
-        {
-            float sphereDiameter = Random.Range(0, 1);
-            int squareSize = Random.Range(1, maxSize);
-            spherePrefab.transform.localScale = new Vector3(sphereDiameter, sphereDiameter, sphereDiameter);
+            int numberOfSpheres = Mathf.FloorToInt((2f * _size) / _figureSize);
 
-            Transform parent = new GameObject("Spheres").transform;
-
-            for (float x = -squareSize / 2f; x <= squareSize / 2f; x += sphereDiameter)
+            for (int i = 0; i < numberOfSpheres; i++)
             {
-                for (float z = -squareSize / 2f; z <= squareSize / 2f; z += sphereDiameter)
+                for (int j = 0; j < numberOfSpheres; j++)
                 {
-                    Vector3 position = new Vector3(x, 0, z);
+                    for (int k = 0; k < numberOfSpheres; k++)
+                    {
+                        float x = -_size + i * _figureSize + sphereRadius;
+                        float y = -_size + j * _figureSize + sphereRadius;
+                        float z = -_size + k * _figureSize + sphereRadius;
 
-                    Instantiate(spherePrefab, position, Quaternion.identity, parent);
+                        Vector3 position = new Vector3(x, y, z);
+                        float distanceToCenter = Vector3.Distance(position, Vector3.zero);
+
+                        if (distanceToCenter <= _size)
+                        {
+                            Instance(position);
+                        }
+                    }
                 }
             }
+
+            SetParentPostion();
         }
     }
 }

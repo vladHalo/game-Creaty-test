@@ -1,26 +1,65 @@
+using System.Collections.Generic;
+using Lean.Pool;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Core.Scripts.Figure
 {
-    [RequireComponent(typeof(BoxCollider))]
     public class FigureBox : MonoBehaviour
     {
-        [SerializeField] private float _torqueForce, _upForce;
-        [SerializeField] private Rigidbody[] _rigidbodies;
+        private float _torqueForce = 6, _upForce = 6;
+        private List<Rigidbody> _rigidbodies;
+        private GameManager _gameManager;
 
+        public void Init()
+        {
+            _gameManager = GameManager.instance;
+            _rigidbodies = new List<Rigidbody>();
+        }
+
+        public void SetPosition()
+        {
+            float x = Random.Range(_gameManager.zoneSpawnFigureMin.x, _gameManager.zoneSpawnFigureMax.x);
+            float y = Random.Range(_gameManager.zoneSpawnFigureMin.y, _gameManager.zoneSpawnFigureMax.y);
+            float z = Random.Range(_gameManager.zoneSpawnFigureMin.z, _gameManager.zoneSpawnFigureMax.z);
+            transform.position = new Vector3(x, y, z);
+        }
+        
+        public void AddRigidbody(Figure figure)
+        {
+            figure.meshRenderer.material.color = _gameManager.colorsManager.GetRandomColor();
+            figure.BallTrigger += DestroyFigureBox;
+            figure.rigidbody.isKinematic = true;
+            _rigidbodies.Add(figure.rigidbody);
+        }
+
+        [Button, DisableInEditorMode]
         public void DestroyFigureBox()
         {
-            for (int i = 0; i < _rigidbodies.Length; i++)
+            foreach (Rigidbody item in _rigidbodies)
             {
-                _rigidbodies[i].isKinematic = false;
+                item.isKinematic = false;
 
                 float randTorque = Random.Range(-_torqueForce, _torqueForce);
 
-                _rigidbodies[i].AddForce(Vector3.up * _upForce, ForceMode.Impulse);
-                _rigidbodies[i].AddTorque(Vector3.right * randTorque + Vector3.forward * randTorque,
+                item.AddForce(Vector3.up * _upForce, ForceMode.Impulse);
+                item.AddTorque(Vector3.right * randTorque + Vector3.forward * randTorque,
                     ForceMode.Impulse);
-                _rigidbodies[i].velocity = Random.onUnitSphere * randTorque;
+                item.velocity = Random.onUnitSphere * randTorque;
             }
+
+            Invoke(nameof(DespawnFigures), 8);
+        }
+
+        private void DespawnFigures()
+        {
+            foreach (Rigidbody item in _rigidbodies)
+            {
+                LeanPool.Despawn(item.gameObject);
+            }
+
+            Destroy(gameObject);
         }
     }
 }

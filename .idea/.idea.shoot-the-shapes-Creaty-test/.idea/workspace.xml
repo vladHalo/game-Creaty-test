@@ -5,18 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f19ca27-ca7a-434b-ad0d-fb74de2a145a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/App.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Core/Scripts/Figure/SpawnCircle.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Core/Scripts/Figure/SpawnFigure.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Player.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Core/Scripts/Str.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Core/Scripts/Figure/SpawnCube.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Core/Scripts/Figure/SpawnPyramid.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Core/Scripts/Figure/SpawnRectangle.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.shoot-the-shapes-Creaty-test/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.shoot-the-shapes-Creaty-test/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Core/Prefabs/Cube.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Core/Prefabs/Cube.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Core/Prefabs/Sphere.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Core/Prefabs/Sphere.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Core/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Core/Scenes/Main.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Colors/ColorsManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Core/Scripts/Colors/ColorsManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Figure/Figure.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Core/Scripts/Figure/Figure.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Figure/FigureBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Core/Scripts/Figure/FigureBox.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Figure/SpawnCircle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Core/Scripts/Figure/SpawnCircle.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Figure/SpawnFigure.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Core/Scripts/Figure/SpawnFigure.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Core/Scripts/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/MovementPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Core/Scripts/Player/MovementPlayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -95,10 +96,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="31760">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="31760" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -115,7 +116,7 @@
       <option name="presentableId" value="Default" />
       <updated>1692809995341</updated>
       <workItem from="1692809996166" duration="3967000" />
-      <workItem from="1692870963660" duration="7414000" />
+      <workItem from="1692870963660" duration="21504000" />
     </task>
     <servers />
   </component>
