@@ -3,9 +3,8 @@ using UnityEngine;
 namespace Core.Scripts.Player
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class MovementPlayer : MonoBehaviour
+    public class MovementPlayer : Player
     {
-        [SerializeField] private Joystick _joystick;
         [SerializeField] private float _speed;
 
         private Rigidbody _rigidbody;
