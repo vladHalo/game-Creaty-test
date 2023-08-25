@@ -53,9 +53,11 @@ namespace Core.Scripts.Colors
         [Button, DisableInEditorMode]
         public void LoadColors()
         {
-            if (File.Exists(_filePath))
+            TextAsset textAsset = Resources.Load<TextAsset>("colors");
+
+            if (textAsset != null)
             {
-                string json = File.ReadAllText(_filePath);
+                string json = textAsset.text;
 
                 List<ColorData> colorDataList = JsonConvert.DeserializeObject<List<ColorData>>(json);
 
@@ -68,8 +70,9 @@ namespace Core.Scripts.Colors
             }
             else
             {
-                Debug.Log("File is empty");
+                Debug.LogError("Failed to load JSON file.");
             }
         }
+
     }
 }
