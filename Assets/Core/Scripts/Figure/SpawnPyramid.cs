@@ -34,9 +34,9 @@ namespace Core.Scripts.Figure
                         Instance(position);
                     }
                 }
-
-                SetParentPostion();
             }
+
+            SetParentPostion();
         }
     }
 }

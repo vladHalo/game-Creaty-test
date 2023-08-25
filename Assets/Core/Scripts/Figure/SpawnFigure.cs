@@ -12,16 +12,24 @@ namespace Core.Scripts.Figure
         protected float _figureSize;
         protected int _size;
 
+        [SerializeField] private string _name;
         [SerializeField] private int _sizeMin, _sizeMax;
 
         private FigureBox _figureBox;
+        private GameManager _gameManager;
+
+        private void Start()
+        {
+            _gameManager = GameManager.instance;
+        }
 
         [Button, DisableInEditorMode]
         public abstract void Spawn();
 
         protected void SetParameters()
         {
-            _figureBox = new GameObject(_prefab.name).AddComponent<FigureBox>();
+            _figureBox = new GameObject(_name).AddComponent<FigureBox>();
+            _gameManager.figureBox = _figureBox;
             _figureBox.Init();
 
             _figureSize = Random.Range(.5f, 1);
@@ -33,7 +41,7 @@ namespace Core.Scripts.Figure
         {
             var figure = LeanPool.Spawn(_prefab, position, Quaternion.identity, _figureBox.transform)
                 .GetComponent<Figure>();
-            _figureBox.AddRigidbody(figure);
+            _figureBox.AddFigure(figure);
         }
 
         protected void SetParentPostion() => _figureBox.SetPosition();

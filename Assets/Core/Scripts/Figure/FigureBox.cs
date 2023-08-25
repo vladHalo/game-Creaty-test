@@ -9,13 +9,13 @@ namespace Core.Scripts.Figure
     public class FigureBox : MonoBehaviour
     {
         private float _torqueForce = 6, _upForce = 6;
-        private List<Rigidbody> _rigidbodies;
+        private List<Figure> _figures;
         private GameManager _gameManager;
 
         public void Init()
         {
             _gameManager = GameManager.instance;
-            _rigidbodies = new List<Rigidbody>();
+            _figures = new List<Figure>();
         }
 
         public void SetPosition()
@@ -25,28 +25,30 @@ namespace Core.Scripts.Figure
             float z = Random.Range(_gameManager.zoneSpawnFigureMin.z, _gameManager.zoneSpawnFigureMax.z);
             transform.position = new Vector3(x, y, z);
         }
-        
-        public void AddRigidbody(Figure figure)
+
+        public void AddFigure(Figure figure)
         {
+            figure.figureBox = this;
+            figure.collider.enabled = true;
             figure.meshRenderer.material.color = _gameManager.colorsManager.GetRandomColor();
-            figure.BallTrigger += DestroyFigureBox;
             figure.rigidbody.isKinematic = true;
-            _rigidbodies.Add(figure.rigidbody);
+            _figures.Add(figure);
         }
 
         [Button, DisableInEditorMode]
         public void DestroyFigureBox()
         {
-            foreach (Rigidbody item in _rigidbodies)
+            foreach (Figure item in _figures)
             {
-                item.isKinematic = false;
+                item.rigidbody.isKinematic = false;
+                item.collider.enabled = false;
 
                 float randTorque = Random.Range(-_torqueForce, _torqueForce);
 
-                item.AddForce(Vector3.up * _upForce, ForceMode.Impulse);
-                item.AddTorque(Vector3.right * randTorque + Vector3.forward * randTorque,
+                item.rigidbody.AddForce(Vector3.up * _upForce, ForceMode.Impulse);
+                item.rigidbody.AddTorque(Vector3.right * randTorque + Vector3.forward * randTorque,
                     ForceMode.Impulse);
-                item.velocity = Random.onUnitSphere * randTorque;
+                item.rigidbody.velocity = Random.onUnitSphere * randTorque;
             }
 
             Invoke(nameof(DespawnFigures), 8);
@@ -54,7 +56,7 @@ namespace Core.Scripts.Figure
 
         private void DespawnFigures()
         {
-            foreach (Rigidbody item in _rigidbodies)
+            foreach (Figure item in _figures)
             {
                 LeanPool.Despawn(item.gameObject);
             }

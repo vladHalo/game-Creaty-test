@@ -1,17 +1,13 @@
-using System;
 using UnityEngine;
 
 namespace Core.Scripts.Figure
 {
     public class Figure : MonoBehaviour
     {
-        public Action BallTrigger;
+        [HideInInspector] public FigureBox figureBox;
+
+        public Collider collider;
         public MeshRenderer meshRenderer;
         public Rigidbody rigidbody;
-        
-        private void OnTriggerEnter(Collider other)
-        {
-            //BallTrigger?.Invoke();
-        }
     }
 }
